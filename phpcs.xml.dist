@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="Php-common-dsa">
+    <file>src</file>
+    <file>tests</file>
+
+    <arg value="p"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <rule ref="PSR1"/>
+    <rule ref="PSR12"/>
+
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>tests/*</exclude-pattern>
+     </rule>
+</ruleset>
