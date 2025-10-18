@@ -1,0 +1,31 @@
+{
+    "name": "yoanm/common-dsa",
+    "description": "Common DataStructures & Algorithms",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {"Yoanm\\CommonDSA\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Tests\\": "tests/"}
+    },
+    "authors": [{"name": "Yoanm", "email": "4410697+yoanm@users.noreply.github.com"}],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpspec/prophecy": "^1.22",
+        "phpspec/prophecy-phpunit": "^2.4",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^9.6",
+        "squizlabs/php_codesniffer": "^4.0",
+        "yoanm/php-unit-extended": "^2.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}
