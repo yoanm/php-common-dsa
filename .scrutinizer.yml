@@ -41,7 +41,7 @@ build:
       PHPUNIT_UNIT_COVERAGE_FILE_PATH: 'build/coverage-phpunit/scrutinizer.xml'
       PHPCS_DISABLE_WARNING: 'true'
     php:
-      version: "8.4"
+      version: "8.2"
       ini:
         memory_limit: "-1"
     timezone: UTC
