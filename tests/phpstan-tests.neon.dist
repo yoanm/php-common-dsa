@@ -1,0 +1,17 @@
+includes:
+  - ../vendor/phpstan/phpstan-phpunit/extension.neon
+  - ../vendor/phpstan/phpstan-phpunit/rules.neon
+  - ../vendor/jangregor/phpstan-prophecy/extension.neon
+  - ./phpstan-tests-baseline.neon
+
+parameters:
+  phpVersion: 80100
+  level: 9
+  paths:
+    - .
+  ignoreErrors:
+    - identifier: missingType.iterableValue # Pretty useless for tests !
+    - identifier: argument.type # Too heavy if everything has to be fully typed !
+
+  bootstrapFiles:
+    - ../vendor/autoload.php
