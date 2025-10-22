@@ -87,7 +87,7 @@ class RecursiveTraversal
 
         /**
          * No easy way to tell PHPStan that $res is a list in case level is not provided :/
-         * @var list<list<Node>> $res
+         * @phpstan-var list<list<Node>> $res
          */
         return $res;
     }

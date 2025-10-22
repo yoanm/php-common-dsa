@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Technical\Algorithm;
 
 use PHPUnit\Framework\Assert;
-use Yoanm\CommonDSA\DataStructure\NAryTree\Node;
+use Yoanm\CommonDSA\DataStructure\BinaryTree\Node;
 
 trait TraversalTestTrait
 {
