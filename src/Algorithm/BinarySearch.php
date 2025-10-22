@@ -21,8 +21,8 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                           May contain duplicates.
+     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
+     *                                                          May contain duplicates.
      * @param int|float $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
@@ -70,8 +70,8 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                           May contain duplicates.
+     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
+     *                                                          May contain duplicates.
      * @param int|float $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
@@ -119,8 +119,8 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                           May contain duplicates.
+     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
+     *                                                          May contain duplicates.
      * @param int|float $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
