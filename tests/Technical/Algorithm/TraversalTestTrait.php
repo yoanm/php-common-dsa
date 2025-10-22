@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Technical\Algorithm;
+
+use PHPUnit\Framework\Assert;
+use Yoanm\CommonDSA\DataStructure\NAryTree\Node;
+
+trait TraversalTestTrait
+{
+    /**
+     * @param list<int> $expected
+     * @param iterable<Node> $actual
+     */
+    protected static function assertSameTreeNodeValues(array $expected, iterable $actual, Assert $assert): void
+    {
+        $newActual = [];
+        foreach ($actual as $node) {
+            $newActual[] = $node->val;
+        }
+
+        $assert::assertSame($expected, $newActual);
+    }
+
+    /**
+     * @param list<list<int>> $expected
+     * @param iterable<iterable<Node>> $actual
+     */
+    protected static function assertLevelOrderSameTreeNodeValues(array $expected, iterable $actual, Assert $assert): void
+    {
+        $newActual = [];
+        foreach ($actual as $key => $nodeList) {
+            $newActual[$key] = [];
+            foreach ($nodeList as $node) {
+                $newActual[$key][] = $node->val;
+            }
+        }
+
+        $assert::assertSame($expected, $newActual);
+    }
+}
