@@ -16,9 +16,9 @@ class BinarySearch
      * With:
      * - 𝑛 equals the provided list length.
      *
-     * TC: 𝑂(㏒ 𝑛) - classic for binary search
+     * TC: 𝑂⟮㏒ 𝑛⟯ - classic for binary search
      *
-     * SC: 𝑂(1) - Constant extra space
+     * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
      * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
@@ -65,9 +65,9 @@ class BinarySearch
      * With:
      * - 𝑛 equals the provided list length.
      *
-     * TC: 𝑂(㏒ 𝑛) - classic for binary search
+     * TC: 𝑂⟮㏒ 𝑛⟯ - classic for binary search
      *
-     * SC: 𝑂(1) - Constant extra space
+     * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
      * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
@@ -114,9 +114,9 @@ class BinarySearch
      * With:
      * - 𝑛 equals the provided list length.
      *
-     * TC: 𝑂(㏒ 𝑛) - classic for binary search
+     * TC: 𝑂⟮㏒ 𝑛⟯ - classic for binary search
      *
-     * SC: 𝑂(1) - Constant extra space
+     * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
      * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
