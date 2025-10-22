@@ -6,21 +6,18 @@ namespace Yoanm\CommonDSA\Factory;
 
 use Yoanm\CommonDSA\DataStructure\NAryTree\Node;
 
-/**
- * @template TNode of Node The actual Node class
- * @template TValue of mixed The actual Node value type
- *
- * @phpstan-type TNodeCreator callable(TValue $v): TNode
- *
- */
 class NAryTreeFactory
 {
     /**
      * @TODO write example regarding expecting list format !
      *
-     * @param mixed[] $list
-     * @phpstan-param list<TValue|null> $list
-     * @phpstan-param TNodeCreator $nodeCreator
+     * @template TNode of Node The actual Node class
+     * @template TValue of mixed The actual Node value type
+     *
+     *
+     * @param mixed[] $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes
+     * @phpstan-param  list<TValue|null> $list
+     * @phpstan-param callable(TValue $v): TNode $nodeCreator
      *
      * @phpstan-return ?TNode
      */

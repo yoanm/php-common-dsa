@@ -235,7 +235,7 @@ class Traversal
     }
 
     /**
-     * Level order (=BFS): Traverse tree level by level, from Left to Right
+     * BFS: Traverse tree level by level, from Left to Right
      *
      *
      * <br>
