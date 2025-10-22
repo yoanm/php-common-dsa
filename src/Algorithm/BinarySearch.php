@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Yoanm\CommonDSA\Algorithm;
 
-use ArrayAccess;
-
 class BinarySearch
 {
     /**
@@ -21,34 +19,39 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                          May contain duplicates.
-     * @param int|float $target
-     * @param int $lowIdx Lookup start index.<br>
-     *                    Default to 0 (head index).
-     * @param int|null $highIdx Lookup end index.<br>
+     * @template TValue of (int|float)
+     *
+     *
+     * @param array<int|float> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes, sorted in non-decreasing
+     *                               order (min→max)!<br>
+     *                               May contain duplicates.
+     * @phpstan-param list<TValue> $list
+     * @phpstan-param TValue $target
+     * @param int $headIdx Lookup start index.<br>
+     *                     Default to 0 (head index).
+     * @param int|null $tailIdx Lookup end index.<br>
      *                          Default to tail index
      *
      * @return int Index where $target has been found, -1 if not found
      */
     public static function find(
-        array|ArrayAccess $list,
+        array $list,
         int|float $target,
-        int $lowIdx = 0,
-        int|null $highIdx = null,
+        int $headIdx = 0,
+        int|null $tailIdx = null,
     ): int {
-        $highIdx ??= count($list) - 1;
+        $tailIdx ??= count($list) - 1;
 
-        while ($lowIdx <= $highIdx) {
+        while ($headIdx <= $tailIdx) {
             // Prevent ($lowIdx + $highIdx) overflow !
-            $midIdx = $lowIdx + (($highIdx - $lowIdx) >> 1);
+            $midIdx = $headIdx + (($tailIdx - $headIdx) >> 1);
 
             if ($list[$midIdx] < $target) {
                 // Current value is too small ? => Ignore left side and current
-                $lowIdx = $midIdx + 1;
+                $headIdx = $midIdx + 1;
             } elseif ($list[$midIdx] > $target) {
                 // Current value is greater ? => Ignore right side and current
-                $highIdx = $midIdx - 1;
+                $tailIdx = $midIdx - 1;
             } else {
                 return $midIdx;
             }
@@ -70,9 +73,14 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                          May contain duplicates.
-     * @param int|float $target
+     * @template TValue of (int|float)
+     *
+     *
+     * @param array<int|float> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes, sorted in non-decreasing
+     *                               order (min→max)!<br>
+     *                               May contain duplicates.
+     * @phpstan-param list<TValue> $list
+     * @phpstan-param TValue $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
      * @param int|null $highIdx Lookup end index.<br>
@@ -82,7 +90,7 @@ class BinarySearch
      *             ⚠ Might be beyond $list current indexes if $target is greater than tail value !
      */
     public static function lowerBound(
-        array|ArrayAccess $list,
+        array $list,
         int|float $target,
         int $lowIdx = 0,
         int|null $highIdx = null,
@@ -119,9 +127,14 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                          May contain duplicates.
-     * @param int|float $target
+     * @template TValue of (int|float)
+     *
+     *
+     * @param array<int|float> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes, sorted in non-decreasing
+     *                               order (min→max)!<br>
+     *                               May contain duplicates.
+     * @phpstan-param list<TValue> $list
+     * @phpstan-param TValue $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
      * @param int|null $highIdx Lookup end index.<br>
@@ -131,7 +144,7 @@ class BinarySearch
      *             ⚠ Might be beyond $list current indexes if $target is greater than or equal to tail value !
      */
     public static function upperBound(
-        array|ArrayAccess $list,
+        array $list,
         int|float $target,
         int $lowIdx = 0,
         int|null $highIdx = null,
