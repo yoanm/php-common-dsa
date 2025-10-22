@@ -6,20 +6,22 @@ namespace Yoanm\CommonDSA\Factory;
 
 use Yoanm\CommonDSA\DataStructure\NAryTree\Node;
 
+/**
+ * @template TNode of Node The actual Node class
+ * @template TValue of mixed The actual Node value type
+ *
+ * @phpstan-type TNodeCreator callable(TValue $v): TNode
+ *
+ */
 class NAryTreeFactory
 {
     /**
      * @TODO write example regarding expecting list format !
      *
-     * @template CType of Node Node class
-     * @template VType of mixed List value type
+     * @param list<TValue> $list
+     * @param TNodeCreator $nodeCreator
      *
-     * @phpstan-type CallbackType callable(VType $v): CType
-     *
-     * @param array<int, VType> $list
-     * @param CallbackType $nodeCreator
-     *
-     * @return null|Node|CType
+     * @return null|Node|TNode
      */
     public static function fromLevelOrderList(array $list, callable $nodeCreator): ?Node
     {
@@ -28,14 +30,16 @@ class NAryTreeFactory
             return null;
         }
 
-        $root = call_user_func($nodeCreator, $list[0]);
         $queue = new \SplQueue();
 
+        $root = call_user_func($nodeCreator, $list[0]);
         $queue->enqueue($root);
+
         $idx = 2; // Should be index 1, but it contains the null value indicating end of children for "root" level !
         while ($idx <= $tailIdx) {
             /** @var Node $parentNode */
-            $parentNode = $queue->bottom(); // =keep() => next value to dequeue from a SplQueue!
+            $parentNode = $queue->bottom(); // =peek() => next value to dequeue from a SplQueue!
+
             // Append children to the current parent node until a null value is found
             if (null !== $list[$idx]) {
                 $parentNode->children[] = $node = call_user_func($nodeCreator, $list[$idx]);
@@ -44,7 +48,6 @@ class NAryTreeFactory
                 // Drop current parent node as there is no more children to attach
                 $queue->dequeue();
             }
-
             ++$idx;
         }
 

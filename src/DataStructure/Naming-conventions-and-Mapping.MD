@@ -82,11 +82,11 @@ SC: 𝑂⟮𝟷⟯
 ## SplStack
 ℹ️ Implemented using a `SplDoublyLinkedList`
 
-#### Enqueue an element
-`enqueue()`
+#### push an element
+`push()`
 
-#### Dequeue an element
-`dequeue()`
+#### pop an element
+`pop()`
 
 #### Peek element
 `peek()`➙`top()`

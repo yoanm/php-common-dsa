@@ -42,10 +42,10 @@ final class BinaryTreeFactoryTest extends TestCase
     public function provideFromLevelOrderListWithEmptyListTestCases(): array
     {
         return [
-            'Basic case 1' => [
+            'Empty list' => [
                 'data' => [],
             ],
-            'Basic case 2' => [
+            'Only one null value' => [
                 'data' => [null],
             ],
         ];
