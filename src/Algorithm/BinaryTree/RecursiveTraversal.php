@@ -14,51 +14,48 @@ use Yoanm\CommonDSA\DataStructure\BinaryTree\NodeInterface as Node;
  *
  *
  * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal for iterative implementations.
- *
- *
- * @template TNode of Node The actual Node class
  */
 class RecursiveTraversal
 {
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveTraversal::preOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function preOrder(Node $node): array
     {
         // ⚠ Do not preserve keys otherwise there is conflicting keys in case "yield from" is used !
+        // ⚠ Do not preserve keys in order to always return a list !
         return iterator_to_array(self::preOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveTraversal::preOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function inOrder(Node $node): array
     {
         // ⚠ Do not preserve keys otherwise there is conflicting keys in case "yield from" is used !
+        // ⚠ Do not preserve keys in order to always return a list !
         return iterator_to_array(self::inOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveTraversal::inOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function postOrder(Node $node): array
     {
         // ⚠ Do not preserve keys otherwise there is conflicting keys in case "yield from" is used !
+        // ⚠ Do not preserve keys in order to always return a list !
         return iterator_to_array(self::postOrderGenerator($node), false);
     }
 
@@ -78,15 +75,20 @@ class RecursiveTraversal
      *
      * SC: 𝑂⟮𝑛⟯ - Due to the list storing every node for every level (see levelOrderHelper() function).
      *
-     * @return array<array<TNode>> key is the level, value is the list of nodes for that level
-     * @phpstan-return list<list<TNode>>
+     *
+     * @return array<int, array<Node>> key is the level, value is the list of nodes for that level
+     * @phpstan-return list<list<Node>>
      */
-    public static function levelOrder(Node $root): array
+    public static function levelOrder(Node $node): array
     {
         $res = [];
 
-        self::levelOrderHelper($root, $res);
+        self::levelOrderHelper($node, $res);
 
+        /**
+         * No easy way to tell PHPStan that $res is a list in case level is not provided :/
+         * @var list<list<Node>> $res
+         */
         return $res;
     }
 
@@ -104,9 +106,8 @@ class RecursiveTraversal
      *
      * SC: 𝑂⟮𝘩⟯ - Due to the stack trace (recursive calls) + extra space for inner Generator class instances !
      *
-     * @param TNode $node
      *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function preOrderGenerator(Node $node): Generator
     {
@@ -134,9 +135,8 @@ class RecursiveTraversal
      *
      * SC: 𝑂⟮𝘩⟯ - Due to the stack trace (recursive calls) + extra space for inner Generator class instances !
      *
-     * @param TNode $node
      *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function inOrderGenerator(Node $node): Generator
     {
@@ -165,9 +165,8 @@ class RecursiveTraversal
      *
      * SC: 𝑂⟮𝘩⟯ - Due to the stack trace (recursive calls) + extra space for inner Generator class instances !
      *
-     * @param TNode $node
      *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function postOrderGenerator(Node $node): Generator
     {
@@ -198,10 +197,9 @@ class RecursiveTraversal
      *
      * SC: 𝑂⟮h⟯ - Due to the stack trace (recursive calls)
      *
-     * @param TNode $node
      *
-     * @param array<int, array<TNode>> $res key is the level, value is the list of nodes for that level
-     * @phpstan-param array<int, list<TNode>> $res
+     * @param array<int, array<Node>> $res key is the level, value is the list of nodes for that level
+     * @phpstan-param array<int, list<Node>> $res
      */
     public static function levelOrderHelper(Node $node, array &$res, int $level = 0): void
     {

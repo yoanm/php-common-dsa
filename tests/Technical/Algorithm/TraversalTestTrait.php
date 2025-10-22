@@ -32,11 +32,12 @@ trait TraversalTestTrait
     protected static function assertLevelOrderSameTreeNodeValues(array $expected, iterable $actual, Assert $assert): void
     {
         $newActual = [];
-        foreach ($actual as $key => $nodeList) {
-            $newActual[$key] = [];
+        foreach ($actual as $nodeList) {
+            $tmpList = [];
             foreach ($nodeList as $node) {
-                $newActual[$key][] = $node->val;
+                $tmpList[] = $node->val;
             }
+            $newActual[] = $tmpList;
         }
 
         $assert::assertSame($expected, $newActual);

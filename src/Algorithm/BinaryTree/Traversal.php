@@ -14,80 +14,74 @@ use Yoanm\CommonDSA\DataStructure\BinaryTree\NodeInterface as Node;
  *
  *
  * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveTraversal for recursive implementations.
- *
- *
- * @template TNode of Node The actual Node class
  */
 class Traversal
 {
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::preOrderGenerator()
      *
-     * @param TNode $node
+
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return Node[]
+     * @phpstan-return list<Node>
      */
     public static function preOrder(Node $node): array
     {
-        return iterator_to_array(self::preOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::preOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::inOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return Node[]
+     * @phpstan-return list<Node>
      */
     public static function inOrder(Node $node): array
     {
-        return iterator_to_array(self::inOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::inOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::postOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return Node[]
+     * @phpstan-return list<Node>
      */
     public static function postOrder(Node $node): array
     {
-        return iterator_to_array(self::postOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::postOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::BFSGenerator()
      *
-     * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::levelOrder() if node level must be known !
      *
-     * @param TNode $node
-     *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return Node[]
+     * @phpstan-return list<Node>
      */
     public static function BFS(Node $node): array
     {
-        return iterator_to_array(self::BFSGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::BFSGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::levelOrderGenerator()
-     *
-     *
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::BFS() if node level isn't useful.
      *
-     * @param TNode $node
      *
-     * @return array<array<TNode>> key is the level, value is the list of nodes for that level
-     * @phpstan-return list<list<TNode>>
+     * @return array<int, array<Node>> key is the level, value is the list of nodes for that level
+     * @phpstan-return list<list<Node>>
      */
     public static function levelOrder(Node $node): array
     {
-        return iterator_to_array(self::levelOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::levelOrderGenerator($node), false);
     }
 
     /**
@@ -106,17 +100,16 @@ class Traversal
      * SC: 𝑂⟮𝘩⟯ - Due to the stack storing parent nodes path up to the root node.
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function preOrderGenerator(Node $node): Generator
     {
+        /** @var SplStack<Node> $stack */
         $stack = new SplStack();
 
         $stack->push($node);
+
         while (!$stack->isEmpty()) {
-            /** @var Node $currentNode */
             $currentNode = $stack->pop();
 
             yield $currentNode;
@@ -145,14 +138,13 @@ class Traversal
      *
      * SC: 𝑂⟮𝘩⟯ - Due to the stack storing parent nodes path up to the root node.
      *
-     *
-     * @param TNode $node
-     *
      * @return Generator<Node>
      */
     public static function inOrderGenerator(Node $node): Generator
     {
+        /** @var SplStack<Node> $stack */
         $stack = new SplStack();
+
         $currentNode = $node;
         while (null !== $currentNode || !$stack->isEmpty()) {
             while (null !== $currentNode) {
@@ -162,7 +154,6 @@ class Traversal
 
             // Current node becomes the leftmost leaf found
             // (or the same current node in case it doesn't have left node!)
-            /** @var Node $currentNode */
             $currentNode = $stack->pop();
 
             yield $currentNode;
@@ -188,12 +179,11 @@ class Traversal
      * SC: 𝑂⟮𝘩⟯ - Due to the stack storing parent nodes path up to the root node.
      *
      *
-     * @param TNode $node
-     *
      * @return Generator<Node>
      */
     public static function postOrderGenerator(Node $node): Generator
     {
+        /** @var SplStack<Node> $stack */
         $stack = new SplStack();
 
         $currentNode = $node;
@@ -206,7 +196,6 @@ class Traversal
                 $currentNode = $currentNode->left;
             }
 
-            /** @var Node $currentNode */
             $currentNode = $stack->pop();
 
             if (!$stack->isEmpty() && $currentNode->right === $stack->top()) {
@@ -246,16 +235,16 @@ class Traversal
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::BFSGenerator() if node level isn't useful.
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<int, array<TNode>> key is the level, value is the list of nodes for that level
-     * @phpstan-return Generator<int, list<TNode>>
+     * @return Generator<int, array<Node>> key is the level, value is the list of nodes for that level
+     * @phpstan-return Generator<int, list<Node>>
      */
     public static function levelOrderGenerator(Node $node): Generator
     {
+        /** @var SplQueue<Node> $queue */
         $queue = new SplQueue();
 
         $queue->enqueue($node);
+
         while (!$queue->isEmpty()) {
             $nodeList = [];
             $currentLevelNodeCounter = $queue->count();
@@ -296,12 +285,11 @@ class Traversal
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\Traversal::levelOrderGenerator() if node level must be known !
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function BFSGenerator(Node $node): Generator
     {
+        /** @var SplQueue<Node> $queue */
         $queue = new SplQueue();
 
         $queue->enqueue($node);

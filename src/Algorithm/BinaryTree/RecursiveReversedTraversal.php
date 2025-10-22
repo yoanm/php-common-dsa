@@ -24,51 +24,48 @@ use Yoanm\CommonDSA\DataStructure\BinaryTree\NodeInterface as Node;
  *
  *
  * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\ReversedTraversal for iterative implementations.
- *
- *
- * @template TNode of Node The actual Node class
  */
 class RecursiveReversedTraversal
 {
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveReversedTraversal::preOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function preOrder(Node $node): array
     {
         // ⚠ Do not preserve keys otherwise there is conflicting keys in case "yield from" is used !
+        // ⚠ Do not preserve keys in order to always return a list !
         return iterator_to_array(self::preOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveReversedTraversal::preOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function inOrder(Node $node): array
     {
         // ⚠ Do not preserve keys otherwise there is conflicting keys in case "yield from" is used !
+        // ⚠ Do not preserve keys in order to always return a list !
         return iterator_to_array(self::inOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveReversedTraversal::inOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function postOrder(Node $node): array
     {
         // ⚠ Do not preserve keys otherwise there is conflicting keys in case "yield from" is used !
+        // ⚠ Do not preserve keys in order to always return a list !
         return iterator_to_array(self::postOrderGenerator($node), false);
     }
 
@@ -88,9 +85,7 @@ class RecursiveReversedTraversal
      * SC: 𝑂⟮𝘩⟯ - Due to the stack trace (recursive calls) + extra space for inner Generator class instances !
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function preOrderGenerator(Node $node): Generator
     {
@@ -120,9 +115,7 @@ class RecursiveReversedTraversal
      * SC: 𝑂⟮𝘩⟯ - Due to the stack trace (recursive calls) + extra space for inner Generator class instances !
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function inOrderGenerator(Node $node): Generator
     {
@@ -153,9 +146,7 @@ class RecursiveReversedTraversal
      * SC: 𝑂⟮𝘩⟯ - Due to the stack trace (recursive calls) + extra space for inner Generator class instances !
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function postOrderGenerator(Node $node): Generator
     {

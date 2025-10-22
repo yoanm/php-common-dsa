@@ -25,7 +25,7 @@ final class BinaryTreeFactoryTest extends TestCase
         $root = Factory::fromLevelOrderList($data, static fn(int $val) => new Node($val));
 
         self::assertNotNull($root);
-        self::assertInstanceOf(Node::class, $root);
+        self::assertInstanceOf(Node::class, $root); // @phpstan-ignore staticMethod.alreadyNarrowedType
         self::assertLevelOrderSameTreeNodeValues($expected, Helper::levelOrder($root), $this);
     }
 

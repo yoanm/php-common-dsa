@@ -24,62 +24,59 @@ use Yoanm\CommonDSA\DataStructure\BinaryTree\NodeInterface as Node;
  *
  *
  * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RecursiveReversedTraversal for recursive implementations.
- *
- *
- * @template TNode of Node The actual Node class
  */
 class ReversedTraversal
 {
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RevervedTraversal::preOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function preOrder(Node $node): array
     {
-        return iterator_to_array(self::preOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::preOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RevervedTraversal::inOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function inOrder(Node $node): array
     {
-        return iterator_to_array(self::inOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::inOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RevervedTraversal::postOrderGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function postOrder(Node $node): array
     {
-        return iterator_to_array(self::postOrderGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::postOrderGenerator($node), false);
     }
 
     /**
      * @see \Yoanm\CommonDSA\Algorithm\BinaryTree\RevervedTraversal::BFSGenerator()
      *
-     * @param TNode $node
      *
-     * @return array<TNode>
-     * @phpstan-return list<TNode>
+     * @return array<Node>
+     * @phpstan-return list<Node>
      */
     public static function BFS(Node $node): array
     {
-        return iterator_to_array(self::BFSGenerator($node));
+        // ⚠ Do not preserve keys in order to always return a list !
+        return iterator_to_array(self::BFSGenerator($node), false);
     }
 
     /**
@@ -98,9 +95,7 @@ class ReversedTraversal
      * SC: 𝑂⟮𝘩⟯ - Due to the stack storing parent nodes path up to the root node.
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function preOrderGenerator(Node $node): Generator
     {
@@ -137,8 +132,6 @@ class ReversedTraversal
      *
      * SC: 𝑂⟮𝘩⟯ - Due to the stack storing parent nodes path up to the root node.
      *
-     *
-     * @param TNode $node
      *
      * @return Generator<Node>
      */
@@ -180,8 +173,6 @@ class ReversedTraversal
      *
      * SC: 𝑂⟮𝘩⟯ - Due to the stack storing parent nodes.
      *
-     *
-     * @param TNode $node
      *
      * @return Generator<Node>
      */
@@ -231,12 +222,11 @@ class ReversedTraversal
      * SC: 𝑂⟮𝑚⟯ - Due to the queue storing current level parent nodes
      *
      *
-     * @param TNode $node
-     *
-     * @return Generator<TNode>
+     * @return Generator<Node>
      */
     public static function BFSGenerator(Node $node): Generator
     {
+        /** @var SplQueue<Node> $queue */
         $queue = new SplQueue();
 
         $queue->enqueue($node);
