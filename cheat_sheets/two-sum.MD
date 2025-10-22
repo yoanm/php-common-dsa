@@ -7,8 +7,8 @@
 /**
  * With:
  *  - 𝑛 equals the provided list length
- * Time complexity: 𝑂(𝑛) * 𝑂(𝑛) => 𝑂(𝑛 * 𝑛)
- * Space complexity: 𝑂(1) Constant extra space
+ * Time complexity: 𝑂⟮𝑛⟯ × 𝑂⟮𝑛⟯ => 𝑂⟮𝑛²⟯
+ * Space complexity: 𝑂⟮𝟷⟯ Constant extra space
  * 
  * @param int[] $list
  *
@@ -17,9 +17,9 @@
 function twoSum(array $list, int $target): array {
     $tailIdx = count($list) - 1;
 
-    for ($idx1 = 0; $idx1 <= $tailIdx; ++$idx1) { // 𝑂(𝑛) * 𝑂(𝑛)
+    for ($idx1 = 0; $idx1 <= $tailIdx; ++$idx1) { // 𝑂⟮𝑛⟯ × 𝑂⟮𝑛⟯
         $complement = $target - $list[$idx1];
-        for ($idx2 = ($idx1 + 1); $idx2 <= $tailIdx; ++$idx2) { // 𝑂(𝑛)
+        for ($idx2 = ($idx1 + 1); $idx2 <= $tailIdx; ++$idx2) { // 𝑂⟮𝑛⟯
             if ($list[$idx2] === $complement) {
                 return [$idx1, $idx2];  
             }
@@ -36,8 +36,8 @@ function twoSum(array $list, int $target): array {
 /**
  * With:
  *  - 𝑛 equals the provided list length
- * Time complexity: 𝑂(𝑛) + 𝑂(𝑛) => 𝑂(2𝑛) => 𝑂(𝑛)
- * Space complexity: 𝑂(𝑛) In order to store all value<=>index in the map
+ * Time complexity: 𝑂⟮𝑛⟯ ﹢ 𝑂⟮𝑛⟯ => 𝑂⟮𝟸𝑛⟯ => 𝑂⟮𝑛⟯
+ * Space complexity: 𝑂⟮𝑛⟯ In order to store all value<=>index in the map
  * 
  * @param int[] $list
  *
@@ -53,7 +53,7 @@ function twoSum(array $list, int $target): array {
         $hashMap[$list[$idx]] = $idx; // /!\ With same value at multiple index => Use $hashMap[$list[$idx]][] = $idx;
     }
     
-    // 1. Iterate and find, while filling hashMap => 𝑂(𝑛) (Assuming hashMap lookup is 𝑂(𝟷))
+    // 1. Iterate and find, while filling hashMap => 𝑂⟮𝑛⟯ (Assuming hashMap lookup is 𝑂⟮𝟷⟯)
     $idx = -1;
     while (++$idx <= $tailIdx) { // `while` is faster than `for`/`foreach BUT less readable
         $complement = $target - $list[$idx];
@@ -72,9 +72,9 @@ function twoSum(array $list, int $target): array {
 /**
  * With:
  *  - 𝑛 equals the provided list length
- * Time complexity: 𝑂(𝑛)
- * Space complexity: 𝑂(𝑛) In order to store all value<=>index in the map
- *                      BUT optimized to store only values until solution is found (= 𝑂(𝑛) in worse case only)
+ * Time complexity: 𝑂⟮𝑛⟯
+ * Space complexity: 𝑂⟮𝑛⟯ In order to store all value<=>index in the map
+ *                      BUT optimized to store only values until solution is found (= 𝑂⟮𝑛⟯ in worse case only)
  * 
  * @param int[] $list
  *
@@ -84,7 +84,7 @@ function twoSum(array $list, int $target): array {
     $tailIdx = count($list) - 1;
     $hashMap = [];
     
-    // 1. Iterate and find, while filling hashMap => 𝑂(𝑛) (Assuming hashMap lookup is 𝑂(𝟷))
+    // 1. Iterate and find, while filling hashMap => 𝑂⟮𝑛⟯ (Assuming hashMap lookup is 𝑂⟮𝟷⟯)
     $idx = -1;
     while (++$idx <= $tailIdx) { // `while` is faster than `for`/`foreach` BUT less readable
         $val = $list[$idx];
