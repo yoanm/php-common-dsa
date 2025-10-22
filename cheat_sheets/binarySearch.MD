@@ -1,6 +1,7 @@
 # Binary search
 
 Also look at `Helpers\BinarySearch` class for:
+ - Basic index search
  - lower / upper bound algo
  
 ## ⚠️ To keep in mind
