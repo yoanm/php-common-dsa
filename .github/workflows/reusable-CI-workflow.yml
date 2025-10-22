@@ -14,5 +14,6 @@ jobs:
     uses: yoanm/.github/.github/workflows/reusable-CI-for-PHP.yml@v1
     with:
       supported-versions-file-path: .supported-versions.json
+      with-codestyle: true
       with-phpstan: true
       with-functional-tests-coverage: false # no functional tests (yet!)
