@@ -1,0 +1,16 @@
+name: 'CI reusable workflow'
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  job:
+    name: ".github"
+    permissions:
+      contents: read
+    uses: yoanm/.github/.github/workflows/reusable-CI-for-PHP.yml@v1
+    with:
+      supported-versions-file-path: .supported-versions.json
