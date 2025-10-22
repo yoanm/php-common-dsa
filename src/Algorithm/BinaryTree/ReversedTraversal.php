@@ -35,7 +35,8 @@ class ReversedTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function preOrder(Node $node): array
     {
@@ -47,7 +48,8 @@ class ReversedTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function inOrder(Node $node): array
     {
@@ -59,7 +61,8 @@ class ReversedTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function postOrder(Node $node): array
     {
@@ -71,7 +74,8 @@ class ReversedTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function BFS(Node $node): array
     {

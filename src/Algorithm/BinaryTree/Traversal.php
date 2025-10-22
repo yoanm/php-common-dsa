@@ -25,7 +25,8 @@ class Traversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function preOrder(Node $node): array
     {
@@ -37,7 +38,8 @@ class Traversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function inOrder(Node $node): array
     {
@@ -49,7 +51,8 @@ class Traversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function postOrder(Node $node): array
     {
@@ -63,7 +66,8 @@ class Traversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function BFS(Node $node): array
     {
@@ -78,7 +82,8 @@ class Traversal
      *
      * @param TNode $node
      *
-     * @return list<list<TNode>> key is the level, value is the list of nodes for that level
+     * @return array<array<TNode>> key is the level, value is the list of nodes for that level
+     * @phpstan-return list<list<TNode>>
      */
     public static function levelOrder(Node $node): array
     {
@@ -243,7 +248,8 @@ class Traversal
      *
      * @param TNode $node
      *
-     * @return Generator<int, list<TNode>> key is the level, value is the list of nodes for that level
+     * @return Generator<int, array<TNode>> key is the level, value is the list of nodes for that level
+     * @phpstan-return Generator<int, list<TNode>>
      */
     public static function levelOrderGenerator(Node $node): Generator
     {

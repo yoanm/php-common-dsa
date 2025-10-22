@@ -18,7 +18,8 @@ class BinaryTreeFactory
     /**
      * @TODO write example regarding expecting list format !
      *
-     * @param list<TValue> $list
+     * @param array<TValue|null> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes
+     * @phpstan-param  list<TValue|null> $list
      * @param TNodeCreator $nodeCreator
      *
      * @return null|Node|TNode

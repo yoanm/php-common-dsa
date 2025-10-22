@@ -25,7 +25,8 @@ class RecursiveTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function preOrder(Node $node): array
     {
@@ -38,7 +39,8 @@ class RecursiveTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function inOrder(Node $node): array
     {
@@ -51,7 +53,8 @@ class RecursiveTraversal
      *
      * @param TNode $node
      *
-     * @return list<TNode>
+     * @return array<TNode>
+     * @phpstan-return list<TNode>
      */
     public static function postOrder(Node $node): array
     {
@@ -75,7 +78,8 @@ class RecursiveTraversal
      *
      * SC: 𝑂⟮𝑛⟯ - Due to the list storing every node for every level (see levelOrderHelper() function).
      *
-     * @return list<list<TNode>> key is the level, value is the list of nodes for that level
+     * @return array<array<TNode>> key is the level, value is the list of nodes for that level
+     * @phpstan-return list<list<TNode>>
      */
     public static function levelOrder(Node $root): array
     {
@@ -196,7 +200,8 @@ class RecursiveTraversal
      *
      * @param TNode $node
      *
-     * @param array<int, list<TNode>> $res key is the level, value is the list of nodes for that level
+     * @param array<int, array<TNode>> $res key is the level, value is the list of nodes for that level
+     * @phpstan-param array<int, list<TNode>> $res
      */
     public static function levelOrderHelper(Node $node, array &$res, int $level = 0): void
     {

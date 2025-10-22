@@ -21,8 +21,10 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                          May contain duplicates.
+     * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes,
+     *                                                           sorted in non-decreasing order (min→max)!<br>
+     *                                                           May contain duplicates.
+     * @phpstan-param list<int|float>|ArrayAccess<int, int|float> $list
      * @param int|float $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
@@ -70,8 +72,10 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                          May contain duplicates.
+     * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes,
+     *                                                           sorted in non-decreasing order (min→max)!<br>
+     *                                                           May contain duplicates.
+     * @phpstan-param list<int|float>|ArrayAccess<int, int|float> $list
      * @param int|float $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).
@@ -119,8 +123,10 @@ class BinarySearch
      * SC: 𝑂⟮𝟷⟯ - Constant extra space
      *
      *
-     * @param list<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be sorted in non-decreasing order (min→max)!<br>
-     *                                                          May contain duplicates.
+     * @param array<int|float>|ArrayAccess<int, int|float> $list ⚠ Must be a 0 indexed list, 0 to n consecutive indexes,
+     *                                                           sorted in non-decreasing order (min→max)!<br>
+     *                                                           May contain duplicates.
+     * @phpstan-param list<int|float>|ArrayAccess<int, int|float> $list
      * @param int|float $target
      * @param int $lowIdx Lookup start index.<br>
      *                    Default to 0 (head index).

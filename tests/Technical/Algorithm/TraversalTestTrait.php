@@ -10,7 +10,8 @@ use Yoanm\CommonDSA\DataStructure\NAryTree\Node;
 trait TraversalTestTrait
 {
     /**
-     * @param list<int> $expected
+     * @param array<int> $expected
+     * @phpstan-param list<int> $expected
      * @param iterable<Node> $actual
      */
     protected static function assertSameTreeNodeValues(array $expected, iterable $actual, Assert $assert): void
@@ -24,7 +25,8 @@ trait TraversalTestTrait
     }
 
     /**
-     * @param list<list<int>> $expected
+     * @param array<int, array<int>> $expected
+     * @phpstan-param array<int, list<int>> $expected
      * @param iterable<iterable<Node>> $actual
      */
     protected static function assertLevelOrderSameTreeNodeValues(array $expected, iterable $actual, Assert $assert): void
