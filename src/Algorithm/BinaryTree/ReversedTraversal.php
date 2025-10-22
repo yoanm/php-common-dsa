@@ -99,11 +99,11 @@ class ReversedTraversal
      */
     public static function preOrderGenerator(Node $node): Generator
     {
+        /** @var SplStack<Node> $stack */
         $stack = new SplStack();
 
         $stack->push($node);
         while (!$stack->isEmpty()) {
-            /** @var Node $currentNode */
             $currentNode = $stack->pop();
 
             yield $currentNode;
@@ -137,6 +137,7 @@ class ReversedTraversal
      */
     public static function inOrderGenerator(Node $node): Generator
     {
+        /** @var SplStack<Node> $stack */
         $stack = new SplStack();
 
         $currentNode = $node;
@@ -148,7 +149,6 @@ class ReversedTraversal
 
             // Current node becomes the rightmost leaf found
             // (or the same current node in case it doesn't have right node!)
-            /** @var Node $currentNode */
             $currentNode = $stack->pop();
 
             yield $currentNode;
@@ -178,6 +178,7 @@ class ReversedTraversal
      */
     public static function postOrderGenerator(Node $node): Generator
     {
+        /** @var SplStack<Node> $stack */
         $stack = new SplStack();
 
         $currentNode = $node;
@@ -190,7 +191,6 @@ class ReversedTraversal
                 $currentNode = $currentNode->right;
             }
 
-            /** @var Node $currentNode */
             $currentNode = $stack->pop();
 
             if (!$stack->isEmpty() && $currentNode->left === $stack->top()) {

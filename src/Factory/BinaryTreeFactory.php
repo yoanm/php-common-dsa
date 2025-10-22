@@ -29,6 +29,7 @@ class BinaryTreeFactory
             return null;
         }
 
+        /** @var SplQueue<Node> $queue */
         $queue = new SplQueue();
 
         $root = call_user_func($nodeCreator, $list[0]); // @phpstan-ignore argument.type
@@ -36,7 +37,6 @@ class BinaryTreeFactory
 
         $idx = 1; // Root value already managed, hence 1 rather 0 !
         while ($idx <= $tailIdx) {
-            /** @var Node|TNode $parentNode */
             $parentNode = $queue->dequeue();
 
             // 1. Manage left node value

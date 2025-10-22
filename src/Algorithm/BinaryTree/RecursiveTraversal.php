@@ -93,7 +93,7 @@ class RecursiveTraversal
     }
 
     /**
-     * Pre-order: N->L->R => Node, then Left children, then Right children
+     * Pre-order: N->L->R => Node, then Left child, then Right child
      *
      * <br>
      * ### Time/Space complexity
@@ -122,7 +122,7 @@ class RecursiveTraversal
     }
 
     /**
-     * In-order (=DFS): L->N->R => Left children, then Node, then Right children
+     * In-order (=DFS): L->N->R => Left child, then Node, then Right child
      *
      * <br>
      * ### Time/Space complexity
@@ -152,7 +152,7 @@ class RecursiveTraversal
     }
 
     /**
-     * Post-order: L->R->N => Left children, then Right children, then Node
+     * Post-order: L->R->N => Left child, then Right child, then Node
      *
      * <br>
      * ### Time/Space complexity
