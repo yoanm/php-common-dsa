@@ -78,7 +78,8 @@ test: test-unit test-functional codestyle phpstan
 
 .PHONY: coverage
 coverage:
-	COVERAGE_OUTPUT_STYLE=html make test
+	COVERAGE_OUTPUT_STYLE=html make test-unit
+	COVERAGE_OUTPUT_STYLE=html make test-functional
 
 .PHONY: test-unit
 ifdef PHPUNIT_COVERAGE_OPTION
