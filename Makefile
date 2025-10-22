@@ -74,7 +74,7 @@ configure:
 
 # Project tests
 .PHONY: test
-test: test-unit test-functional codestyle
+test: test-unit test-functional codestyle phpstan
 
 .PHONY: coverage
 coverage:
@@ -101,6 +101,27 @@ codestyle: create-build-directories
 .PHONY: codestyle-fix
 codestyle-fix:
 	./vendor/bin/phpcbf ${PHPCS_DISABLE_WARNING_OPTION} ${PHPCS_STANDARD_OPTION} ${PHPCS_COLOR_OPTION} ${PHPCS_REPORT_FILE_OPTION}
+
+.PHONY: phpstan
+phpstan: phpstan-sources phpstan-tests
+
+.PHONY: phpstan-sources
+phpstan-sources:
+	XDEBUG_MODE=off ./vendor/bin/phpstan analyse --error-format=table
+
+.PHONY: phpstan-tests
+phpstan-tests:
+	XDEBUG_MODE=off ./vendor/bin/phpstan analyse --configuration tests/phpstan-tests.neon.dist  --error-format=table
+
+
+.PHONY: phpstan-update-sources-baseline
+phpstan-update-sources-baseline:
+	XDEBUG_MODE=off ./vendor/bin/phpstan analyse --generate-baseline=tests/phpstan-baseline.neon
+
+.PHONY: phpstan-update-tests-baseline
+phpstan-update-tests-baseline:
+	XDEBUG_MODE=off ./vendor/bin/phpstan analyse --configuration tests/phpstan-tests.neon.dist --generate-baseline=tests/phpstan-tests-baseline.neon
+
 
 # Internal commands
 .PHONY: create-build-directories

@@ -15,9 +15,11 @@
         "php": "^8.0"
     },
     "require-dev": {
+        "jangregor/phpstan-prophecy": "^2.2",
         "phpspec/prophecy": "^1.22",
         "phpspec/prophecy-phpunit": "^2.4",
         "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^9.6",
         "squizlabs/php_codesniffer": "^4.0",
         "yoanm/php-unit-extended": "^2.0"

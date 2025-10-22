@@ -1,0 +1,14 @@
+includes:
+  - vendor/phpstan/phpstan-phpunit/extension.neon
+  - vendor/phpstan/phpstan-phpunit/rules.neon
+  - vendor/jangregor/phpstan-prophecy/extension.neon
+  - tests/phpstan-baseline.neon
+
+parameters:
+  phpVersion: 80100
+  level: 9
+  paths:
+    - ./src
+
+  bootstrapFiles:
+    - vendor/autoload.php

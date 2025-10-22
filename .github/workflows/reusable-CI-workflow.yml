@@ -11,7 +11,8 @@ jobs:
     name: ".github"
     permissions:
       contents: read
-    uses: yoanm/.github/.github/workflows/reusable-CI-for-PHP.yml@v1
+    uses: yoanm/.github/.github/workflows/reusable-CI-for-PHP.yml@yoanm-patch-1 # @TODO Revert to v1 !!!
     with:
       supported-versions-file-path: .supported-versions.json
+      with-phpstan: true
       with-functional-tests-coverage: false # no functional tests (yet!)
