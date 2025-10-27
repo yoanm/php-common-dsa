@@ -1,6 +1,5 @@
 # Complexity
 
-## Time Complexity
 <!--
 𝑂⟮𝑛⟯
 𝑛 / 𝑚 / 𝑥 / 𝑦 / 𝑧 / 𝘩 (look for "MATHEMATICAL ITALIC SMALL [THE LETTER]")
@@ -11,16 +10,99 @@
 𝟶 / 𝟷 / 𝟸 / 𝟹 / 𝟺 / 𝟻 / 𝟼 / 𝟽 / 𝟾 / 𝟿
 -->
 
+## Array
+ℹ️ For an array of `𝑛` values, `𝑥` is the index of a given value in the array (from `𝟶` to `𝑛 − 𝟷`)
+
+| Operation         | TC          | SC     | Notes                                                                                      |
+|:------------------|:------------|:-------|:-------------------------------------------------------------------------------------------|
+| Add — at index 𝑥 | 𝑂⟮𝑛 − 𝑥⟯ | 𝑂⟮𝟷⟯ | Need to push values from index `𝑥` to `𝑛 − 𝟷`,<br> in order to make room for new value  |
+| Add — as head     | 𝑂⟮𝑛⟯      | 𝑂⟮𝟷⟯ | Need to push each and every values,<br> in order to make room for new head value           |
+| Add — as tail     | 𝑂⟮𝟷⟯      | 𝑂⟮𝟷⟯ |                                                                                            |
+| Remove — index 𝑥 | 𝑂⟮𝑛 − 𝑥⟯ | 𝑂⟮𝟷⟯ | Need to move back values from `𝑥 ﹢ 𝟷` index to tail value,<br> in order to fill the hole |
+| Remove — head     | 𝑂⟮𝑛⟯      | 𝑂⟮𝟷⟯ | Need to move back each and every remaining values,<br> in order to fill the hole           |
+| Remove — tail     | 𝑂⟮𝟷⟯      | 𝑂⟮𝟷⟯ |                                                                                            |
+| Peek index 𝑥     | 𝑂⟮𝟷⟯      | 𝑂⟮𝟷⟯ |                                                                                            |
+
+## Vector
+ℹ️ For a vector of `𝑛` values, `𝑥` is the index of a given value in the vector (from `𝟶` to `𝑛 − 𝟷`)
+
+⚠️️ Amortized vs Reallocation:<br>
+Some operation may require copying current elements into a larger vector (when capacity execeeded).<br>
+Which implies to iterate over each and every values, implying 𝑂⟮𝑛⟯ time complexity (and likely 𝑂⟮𝑛⟯ space complexity then)
+
+| Operation         | TC                                              | SC     | Notes                                                                                      |
+|:------------------|:------------------------------------------------|:-------|:-------------------------------------------------------------------------------------------|
+| Add — at index 𝑥 | 𝑂⟮𝑛 − 𝑥⟯ (Amortized)                         | 𝑂⟮𝟷⟯ | Need to push values from index `𝑥` to `𝑛 − 𝟷`,<br> in order to make room for new value  |
+| Add — as head     | 𝑂⟮𝑛⟯                                          | 𝑂⟮𝟷⟯ | Need to push each and every values,<br> in order to make room for new head value           |
+| Add — as tail     | 𝑂⟮𝟷⟯ (Amortized)                              | 𝑂⟮𝟷⟯ |                                                                                            |
+| Remove — index 𝑥 | 𝑂⟮𝑛 − 𝑥⟯                                     | 𝑂⟮𝟷⟯ | Need to move back values from `𝑥 ﹢ 𝟷` index to tail value,<br> in order to fill the hole |
+| Remove — head     | 𝑂⟮𝑛⟯                                          | 𝑂⟮𝟷⟯ | Need to move back each and every remaining values,<br> in order to fill the hole           |
+| Remove — tail     | 𝑂⟮𝟷⟯                                          | 𝑂⟮𝟷⟯ |                                                                                            |
+| Peek index 𝑥     | 𝑂⟮𝟷⟯                                          | 𝑂⟮𝟷⟯ |                                                                                            |
+
+## Linked list
+ℹ️ For a LL of `𝑛` nodes, `𝑥` is the position of a given node in the list (from `𝟶` to `𝑛 − 𝟷`)
+
+| Operation                        | TC     | SC     | Notes                                                                                                                   |
+|:---------------------------------|:-------|:-------|:------------------------------------------------------------------------------------------------------------------------|
+| Add — at position `𝑥`           | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥 − 𝟷`,<br> in order to retrieve node `𝑥 − 𝟷` and be able to link it to new node |
+| Add — **after** given node `𝑥`  | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                         |
+| Add — **before** given node `𝑥` | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥 − 𝟷`,<br> in order to retrieve node `𝑥 − 𝟷` and be able to link it to new node |
+| Add — as head                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                         |
+| Add — as tail                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ | ⚠️ Assuming tail node is known !<br>Otherwise 𝑂⟮𝑛⟯, in order to retrieve current tail node                            |
+| Remove — at position `𝑥`        | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥 − 𝟷`,<br> in order to be able to link node `𝑥 − 𝟷` to node `𝑥 ﹢ 𝟷`           |
+| Remove — given node `𝑥`         | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥 − 𝟷`,<br> in order to be able to link node `𝑥 − 𝟷` to node `𝑥 ﹢ 𝟷`           |
+| Remove — head                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                         |
+| Remove — tail                    | 𝑂⟮𝑛⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node before tail node,<br> in order to unlink it from original tail node                   |
+| Find node `𝑥`                   | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥`                                                                                  |
+
+## Doubly linked list
+ℹ️ For a DLL of `𝑛` nodes, `𝑥` is the position of a given node in the list (from `𝟶` to `𝑛 − 𝟷`)
+
+| Operation                        | TC     | SC     | Notes                                                                                                                                   |
+|:---------------------------------|:-------|:-------|:----------------------------------------------------------------------------------------------------------------------------------------|
+| Add — at position `𝑥`           | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥 − 𝟷`,<br> in order to retrieve node `𝑥 − 𝟷` and be able to link it to new node                 |
+| Add — **after** given node `𝑥`  | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                                         |
+| Add — **before** given node `𝑥` | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                                         |
+| Add — as head                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                                         |
+| Add — as tail                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ | ⚠️ Assuming tail node is known !<br>Otherwise 𝑂⟮𝑛⟯ in order to retrieve original tail node                                            |
+| Remove — at position `𝑥`        | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥`,<br> in order to retrieve node `𝑥`                                                              |
+| Remove — given node `𝑥`         | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                                         |
+| Remove — head                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |                                                                                                                                         |
+| Remove — tail                    | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ | ⚠️ Assuming tail node is known !<br>Otherwise 𝑂⟮𝑛⟯, in order to retrieve node before tail node and unlink it from original tail node  |
+| Find node `𝑥`                   | 𝑂⟮𝑥⟯ | 𝑂⟮𝟷⟯ | Need to iterate from head to node `𝑥`                                                                                                  |
+
+## Heap
+| Operation | TC       | SC     | Notes                                                              |
+|:----------|:---------|:-------|--------------------------------------------------------------------|
+| Add       | 𝑂⟮㏒ 𝑛⟯ | 𝑂⟮𝟷⟯ | In order to re-balance the tree after the new value has been added |
+| Pop       | 𝑂⟮㏒ 𝑛⟯ | 𝑂⟮𝟷⟯ | In order to re-balance the tree after the value has been popped    |
+| Peek      | 𝑂⟮𝟷⟯   | 𝑂⟮𝟷⟯ |                                                                    |
+
+## Queue / Stack
+ℹ️ Assuming implementation leveraging a circular array (finite-size) or Linked list.<br>
+_Using a simple array for instance would imply pushing/moving back values depending on the operation (see Array above)_
+
+| Operation      | TC     | SC     |
+|:---------------|:-------|:-------|
+| Enqueue / Push | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |
+| Dequeue / Pop  | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |
+| Peek           | 𝑂⟮𝟷⟯ | 𝑂⟮𝟷⟯ |
+
+## Time Complexity
+
+### Examples
+
 - 𝑥 the length of a 2D list
 - 𝑦 the height of a 2D list
 - 𝑛 the number of item in a list (e.g: 𝑛 = 𝑥 × 𝑦 2D list)
 
-### 𝑂⟮𝟷⟯
+#### 𝑂⟮𝟷⟯
 ```
 DoSomething();
 ```
 
-### 𝑂⟮𝑛⟯
+#### 𝑂⟮𝑛⟯
 ```php
 for (i=0; i<n; i++) { // 1D list
   DoSomething();
@@ -32,7 +114,7 @@ for (i=0; i<x; i++) { // 2D list (𝑛 = 𝑥 × 𝑦)
 }
 ```
 
-### 𝑂⟮㏒ 𝑛⟯
+#### 𝑂⟮㏒ 𝑛⟯
 
 ```php
 for ($i=0; $i<$n; $i=$i*2) { // Notice `$i=$i*2` ! 
@@ -40,7 +122,7 @@ for ($i=0; $i<$n; $i=$i*2) { // Notice `$i=$i*2` !
 }
 ```
 
-### 𝑂⟮𝑛 ㏒ 𝑛⟯
+#### 𝑂⟮𝑛 ㏒ 𝑛⟯
 
 ```php
 for ($i=0; $i<n; $i++) {
@@ -50,7 +132,7 @@ for ($i=0; $i<n; $i++) {
 }
 ```
 
-### 𝑂⟮㏒² 𝑛⟯
+#### 𝑂⟮㏒² 𝑛⟯
 ```php
 for ($i=0; $i<$n; $i=$i*2) {
   for ($j=0; $j<$n; $j=$j*2) {
@@ -59,7 +141,7 @@ for ($i=0; $i<$n; $i=$i*2) {
 }
 ```
 
-### 𝑂⟮𝑛²⟯
+#### 𝑂⟮𝑛²⟯
 
 ```php
 for ($i=0; $i<$n; $i=$i++) {
@@ -69,7 +151,7 @@ for ($i=0; $i<$n; $i=$i++) {
 }
 ```
 
-### 𝑂⟮𝟸^𝑛⟯
+#### 𝑂⟮𝟸^𝑛⟯
 
 ```php
 DoSomething(int $n): int
@@ -82,7 +164,7 @@ DoSomething(int $n): int
 }
 ```
 
-### 𝑂⟮½ × 𝑥 × ⟮𝑥﹢𝟷⟯⟯ versus 𝑂⟮𝑛⟯
+#### 𝑂⟮½ × 𝑥 × ⟮𝑥﹢𝟷⟯⟯ versus 𝑂⟮𝑛⟯
 Each cell is visited **only one time**, rather than two time if `$j=0` !
 
 ```php
