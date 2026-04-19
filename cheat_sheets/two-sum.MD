@@ -53,7 +53,7 @@ function twoSum(array $list, int $target): array {
         $hashMap[$list[$idx]] = $idx; // /!\ With same value at multiple index => Use $hashMap[$list[$idx]][] = $idx;
     }
     
-    // 1. Iterate and find, while filling hashMap => 𝑂⟮𝑛⟯ (Assuming hashMap lookup is 𝑂⟮𝟷⟯)
+    // 1. Iterate and find => 𝑂⟮𝑛⟯ (Assuming hashMap lookup is 𝑂⟮𝟷⟯)
     $idx = -1;
     while (++$idx <= $tailIdx) { // `while` is faster than `for`/`foreach BUT less readable
         $complement = $target - $list[$idx];
