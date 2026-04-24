@@ -53,7 +53,7 @@ Resulting aliases/outputs become available for the next steps.
 ### 6 - `DISTINCT` - Remove duplicated rows
 Engines drops duplicated rows based on the given condition(s).
 
-⚠️ This is executed after the `SELECT` statement (=> aliases are available for instance), **BUT before** sorting. In other terms, it means user can't predict which row will be used for the final output !
+⚠️ This is executed after the `SELECT` statement (=> aliases are available for instance), **BUT before** sorting. Which implies that user can't predict which row will be used for the final output !
 
 ### 7 - `ORDER BY` - Sort results
 Engines sorts the dataset based on the given condition(s).
