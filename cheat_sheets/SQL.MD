@@ -1,4 +1,68 @@
 # SQL
+ 
+## Execution order
+1. `FROM` + `ON` + `JOIN`
+2. `WHERE`
+3. `GROUP BY` + Aggregate functions (e.g. `SUM`, `COUNT`, etc)
+4. `HAVING`
+5. `SELECT` + Scalar functions (e.g. `UPPER`, `LENGTH`, etc) + Window functions (e.g. `ROW_NUMBER`, `AVG`, etc)
+6. `DISTINCT`
+7. `ORDER BY`
+8. `LIMIT`/`OFFSET`
+
+### 1 - `FROM` + `ON` + `JOIN`
+#### `FROM` - Identify data source
+Engine determines the base tables/data sources (tables, views, subqueries)
+
+#### `ON` - Filter `JOIN` conditions
+Engine filters rows from the right-hand table **before** joining data
+
+💡 This reduce the dataset **before** joining data, which can be critial for performance ! 
+
+#### `JOIN` - Combine tables
+Engines combines rows from left-hand and right-hand tables, based on join type (e.g. `LEFT JOIN`, `RIGHT JOIN`, `INNER JOIN`, etc)
+
+### 2 - `WHERE` - Filter rows before aggregation
+Engine excludes rows not matching the conditions, **before** any aggregation
+
+⚠️ `WHERE` can't rely on aliases from `SELECT`, as it will be managed later !
+
+### 3 - `GROUP BY` - Aggregate data into groups
+Engines groups rows still available (=not excluded by previous steps).
+
+ℹ️ This is when the **aggregate** functions from `SELECT`/`HAVING`/`ORDER BY`/... clauses are computed, **for each group**
+
+### 4 - `HAVING` - Filter aggregated groups
+Engines filters groups created by `GROUP BY`, using aggregated results.
+
+💡 This is essentially a `WHERE` clause but performed on each group rather than each rows
+
+### 5 - `SELECT` - Compute values and build initial output
+Engines computes values and returns the initial output.
+
+ℹ️ This is when:
+- Column aliases are defined
+- **Scalar** functions are applied (e.g. `CONCAT`, `UPPER`, etc)
+- **Window** functions are executed (e.g. `ROW_NUMBER`, `AVG`, etc)
+- `CASE` statements are evaluated
+
+Resulting aliases/outputs become available for the next steps.
+
+💡 This is where **window** functions are executed, because they process **filtered** and **grouped** rows, generated from previous steps.
+
+### 6 - `DISTINCT` - Remove duplicated rows
+Engines drops duplicated rows based on the given condition(s).
+
+⚠️ This is executed after the `SELECT` statement (=> aliases are available for instance), **BUT before** sorting. In other terms, it means user can't predict which row will be used for the final output !
+
+### 7 - `ORDER BY` - Sort results
+Engines sorts the dataset based on the given condition(s).
+
+ℹ️ As column aliases and window functions results have been executed previously, they are available for `ORDER BY` clause (Unlike `WHERE` clause which is executed early in the process)
+
+### 8 - `LIMIT`/`OFFSET` - Restrict resulting rows
+Engine looks for rows starting from `OFFSET` and includes only row count defined by `LIMIT` clause.
+
 
 ## Common
 
